@@ -14,7 +14,10 @@ import { AppointmentService } from '../services/appointment.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+
+
   processAppointment(app: Appointment) {
+
     const fecha = new Date(app.startTime).toLocaleDateString();
     const hora = new Date(app.startTime).toLocaleTimeString();
     alertify.confirm('Confirmar Cita', `Desea confirmar la cita en el comercio <b>${app.commerce}</b> para el Servicio ${app.service} en la fecha ${fecha} a las ${hora}?`,
@@ -37,7 +40,7 @@ export class HomeComponent implements OnInit{
     this.isFilteder = true;
     this.listAppointments.forEach((a, index) => {
       
-      this.listAppointments[index].commerce = this.listCommerces[this.selectedCommerce as unknown as number].name;
+      this.listAppointments[index].commerce = this.listCommerces[(this.selectedCommerce as unknown as number) -1].name;
       this.listAppointments[index].service = this.listServices[(this.selectedService as unknown as number) -1].name;
     });
     console.log(this.listAppointments);
